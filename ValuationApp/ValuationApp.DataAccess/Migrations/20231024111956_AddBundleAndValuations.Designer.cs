@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ValuationApp.DataAccess;
 
@@ -11,9 +12,11 @@ using ValuationApp.DataAccess;
 namespace ValuationApp.DataAccess.Migrations
 {
     [DbContext(typeof(ValauatioDbContext))]
-    partial class ValauatioDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231024111956_AddBundleAndValuations")]
+    partial class AddBundleAndValuations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

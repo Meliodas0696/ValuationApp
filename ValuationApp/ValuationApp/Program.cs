@@ -1,5 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using ValuationApp.DataAccess;
+using ValuationApp.DataAccess.Repository.Contracts;
+using ValuationApp.DataAccess.Repository;
+using ValuationApp.Services.Contract;
+using ValuationApp.Services;
+using ValuationApp.Mappings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +24,11 @@ if (string.IsNullOrEmpty(connectionString))
 builder.Services.AddDbContext<ValauatioDbContext>(options =>
             options.UseSqlServer(connectionString));
 
+
+builder.Services.AddScoped<IVesselRepository, VesselRepository>();
+builder.Services.AddScoped<IVesselService, VesselService>();
+
+builder.Services.AddAutoMapper(typeof(VesselProfile));
 
 var app = builder.Build();
 

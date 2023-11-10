@@ -1,9 +1,7 @@
-﻿namespace ValuationApp.Entities
+﻿namespace ValuationApp.ValuationDto
 {
-    public class Vessel
+    public class CreateVesselDto
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public string Imo { get; set; }
@@ -11,7 +9,5 @@
         public DateTime Year { get; set; }
 
         public string Description { get; set; }
-
-        public List<Valuation> Valuations { get; set; }
     }
 }

@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ValuationApp.Entities
+﻿namespace ValuationApp.Entities
 {
-    internal class Valuation
+    public class Valuation
     {
+        public int Id { get; set; }
+
+        public double EstimatedValue { get; set; }
+
+        public string Comment { get; set; }
+
+        public int VesselId { get; set; }
+
+        public Vessel Vessel { get; set; }
+
+        public int BundleId { get; set; }
+
+        public Bundle Bundle { get; set; }
     }
 }

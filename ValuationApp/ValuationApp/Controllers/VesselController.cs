@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using ValuationApp.DataAccess;
-using ValuationApp.Entities;
+using ValuationApp.Services.Contract;
+using ValuationApp.ValuationDto;
 
 namespace ValuationApp.Controllers
 {
@@ -9,25 +8,23 @@ namespace ValuationApp.Controllers
     [Route("[controller]")]
     public class VesselController : ControllerBase
     {
-        public readonly ValauatioDbContext _valuationContext;
+        public readonly IVesselService _vesselService;
 
-        public VesselController(ValauatioDbContext valauatioContext)
+        public VesselController(IVesselService vesselService)
         {
-            _valuationContext = valauatioContext;
+            _vesselService = vesselService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Vessel>>> GetAll()
+        public async Task<ActionResult<VesselDto>> GetById(int id)
         {
-            return await _valuationContext.Vessels.ToListAsync();
+            return await _vesselService.GetById(id);
         }
 
         [HttpPost]
-        public async Task<ActionResult<int>> Create([FromBody]Vessel vessel)
+        public async Task<ActionResult<int>> Create([FromBody] VesselDto vessel)
         {
-            await _valuationContext.Vessels.AddAsync(vessel);
-            await _valuationContext.SaveChangesAsync();
-            return vessel.Id;
+            return await _vesselService.Create(vessel);
         }
     }
 }
