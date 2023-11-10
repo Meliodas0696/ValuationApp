@@ -26,5 +26,11 @@ namespace ValuationApp.Controllers
         {
             return await _vesselService.Create(vessel);
         }
+
+        [HttpPut]
+        public async Task<ActionResult<int>> Update([FromBody] VesselDto vessel)
+        {
+            return await _vesselService.Update(vessel);
+        } 
     }
 }

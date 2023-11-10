@@ -21,12 +21,22 @@ namespace ValuationApp.Services
         {
             var existedVessel = await _vesselRepository.GetByImo(vessel.Imo);
 
-            if(existedVessel != null) {
+            if (existedVessel != null)
+            {
                 throw new Exception("Vessel exist");
             }
 
             var vesselToAdd = _mapper.Map<Vessel>(vessel);
             return await _vesselRepository.Create(vesselToAdd);
+        }
+
+        public async Task<int> Update(VesselDto vessel)
+        {
+            var vesselToUpdate = await _vesselRepository.GetById(vessel.Id)
+                ?? throw new Exception("Vessel not exist");
+
+            vesselToUpdate = _mapper.Map(vessel, vesselToUpdate);
+            return await _vesselRepository.Update(vesselToUpdate);
         }
 
         public async Task<VesselDto> GetById(int id)

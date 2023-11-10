@@ -17,6 +17,13 @@ namespace ValuationApp.DataAccess.Repository
             return vessel.Id;
         }
 
+        public async Task<int> Update(Vessel vessel)
+        {
+            _valuationContext.Vessels.Update(vessel);
+            await _valuationContext.SaveChangesAsync();
+            return vessel.Id;
+        }
+
         public async Task<List<Vessel>> GetAll()
         {
             return await _valuationContext.Vessels.ToListAsync();

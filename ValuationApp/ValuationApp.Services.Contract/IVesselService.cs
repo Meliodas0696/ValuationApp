@@ -8,5 +8,7 @@ namespace ValuationApp.Services.Contract
         Task<VesselDto> GetById(int id);
 
         Task<int> Create(VesselDto vessel);
+
+        Task<int> Update(VesselDto vessel);
     }
 }

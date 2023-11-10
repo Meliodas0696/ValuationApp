@@ -8,5 +8,6 @@ namespace ValuationApp.DataAccess.Repository.Contracts
         Task<Vessel> GetByImo(string imo);
         Task<List<Vessel>> GetAll();
         Task<int> Create(Vessel vessel);
+        Task<int> Update(Vessel vessel);
     }
 }
