@@ -16,6 +16,12 @@ namespace ValuationApp.Controllers
         }
 
         [HttpGet]
+        public async Task<ActionResult<List<VesselDto>>> GetAll()
+        {
+            return await _vesselService.GetAll();
+        }
+
+        [HttpGet("GetById")]
         public async Task<ActionResult<VesselDto>> GetById(int id)
         {
             return await _vesselService.GetById(id);

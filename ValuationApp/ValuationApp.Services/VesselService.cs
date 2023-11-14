@@ -45,5 +45,11 @@ namespace ValuationApp.Services
 
             return _mapper.Map<VesselDto>(vessel);
         }
+
+        public async Task<List<VesselDto>> GetAll()
+        {
+            var vessels = await _vesselRepository.GetAll();
+            return _mapper.Map<List<VesselDto>>(vessels);
+        }
     }
 }

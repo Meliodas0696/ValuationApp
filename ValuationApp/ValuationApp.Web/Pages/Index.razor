@@ -1,0 +1,38 @@
+﻿@page "/"
+
+@using ValuationApp.Services.Contract;
+@using ValuationApp.ValuationDto;
+
+@inject IVesselService _vesselService;
+<PageTitle>Index</PageTitle>
+
+<MudTable Items="@vessels" Hover="true" Breakpoint="Breakpoint.Sm">
+    <HeaderContent>
+        <MudTh>Name</MudTh>
+        <MudTh>Year</MudTh>
+        <MudTh>Imo</MudTh>
+        <MudTh>Description</MudTh>
+        <MudTh>Actions</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Name">@context.Name</MudTd>
+        <MudTd DataLabel="Year">@context.Year</MudTd>
+        <MudTd DataLabel="Imo">@context.Imo</MudTd>
+        <MudTd DataLabel="Description">@context.Description</MudTd>
+        <MudTd DataLabel="Actions"><MudButton OnClick="OnEvaluateCLick" Variant="Variant.Filled" Color="Color.Primary">Evaluate</MudButton></MudTd>
+    </RowTemplate>
+</MudTable>
+
+@code {
+    private List<VesselDto>? vessels;
+
+    protected async override Task OnInitializedAsync()
+    {
+        vessels = await _vesselService.GetAll();
+    }
+
+    private void OnEvaluateCLick()
+    {
+
+    }
+}
