@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+        lbtype: external
+    spec:
+      containers:
+        - name: api
+          image: valapp:v1
+          ports:
+            - name: api
+              containerPort: 80
+              protocol: TCP
